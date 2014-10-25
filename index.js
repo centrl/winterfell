@@ -162,13 +162,14 @@ Winterfell.prototype.createTopic = function(topicName, callback) {
  */
 
 Winterfell.prototype.deleteTopic = function(topicName, callback) {
+    var self = this;
     this.getTopic(topicName, function(err, data) {
         var topicArn = data.TopicArn;
         var opts = {
             TopicArn: topicArn
         };
 
-        this.sns.deleteTopic(opts, function(err, data) {
+        self.sns.deleteTopic(opts, function(err, data) {
             if (err) {
                 return callback(err);
             }
